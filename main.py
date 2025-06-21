@@ -36,11 +36,12 @@ if st.button("🔍 Scan for Scams"):
         st.session_state.result = result
 
 # Display result
-ai_result = st.session_state.result["ai_result"].lower()
-if "not a scam" in ai_result or "legitimate source" in ai_result:
-    st.success(f"✅ No scam detected.\n\n{st.session_state.result['ai_result']}")
-else:
-    st.error(f"⚠️ Scam Detected:\n\n{st.session_state.result['ai_result']}")
+if "result" in st.session_state and st.session_state.result:
+    ai_result_text = st.session_state.result.get("ai_result", "").lower()
+    if "not a scam" in ai_result_text or "legitimate source" in ai_result_text:
+        st.success(f"✅ No scam detected.\n\n{st.session_state.result.get('ai_result', '')}")
+    else:
+        st.error(f"⚠️ Scam Detected:\n\n{st.session_state.result.get('ai_result', '')}")
 
 # Clear input
 if st.button("🧹 Clear"):
