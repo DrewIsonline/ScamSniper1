@@ -1,0 +1,40 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+env/
+venv/
+ENV/
+VENV/
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore Streamlit secrets
+.streamlit/secrets.toml
+
+# Ignore OS-specific stuff
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore compiled distributions
+build/
+dist/
+*.spec
+
+# Ignore backup and lock files
+*.bak
+*.swp
+*.lock
+
+# Ignore Jupyter Notebooks (optional)
+*.ipynb
+
+# Ignore .env files if used
+.env
+.env.*
