@@ -1,0 +1,5 @@
+streamlit
+imapclient
+openai
+scikit-learn
+pandas
