@@ -38,10 +38,39 @@ if st.button("🔍 Scan for Scams"):
 # Display result
 if "result" in st.session_state and st.session_state.result:
     ai_result_text = st.session_state.result.get("ai_result", "").lower()
-    if "not a scam" in ai_result_text or "legitimate source" in ai_result_text:
-        st.success(f"✅ No scam detected.\n\n{st.session_state.result.get('ai_result', '')}")
+
+    # Positive signal phrases – safe email indicators
+    safe_indicators = [
+        "does not appear to be a scam",
+        "legitimate source",
+        "this email is not a scam",
+        "trusted company",
+        "verified sender",
+        "no signs of fraud",
+        "no scam detected"
+    ]
+
+    # Scam signal phrases – red flag indicators
+    scam_indicators = [
+        "this is a scam",
+        "scam detected",
+        "this appears to be a scam",
+        "this may be a phishing attempt",
+        "fraudulent email",
+        "request for personal information",
+        "pressure tactic"
+    ]
+
+    # Default fallback
+    display_text = st.session_state.result.get("ai_result", "")
+
+    if any(phrase in ai_result_text for phrase in scam_indicators):
+        st.error(f"⚠️ Scam Detected:\n\n{display_text}")
+    elif any(phrase in ai_result_text for phrase in safe_indicators):
+        st.success(f"✅ No scam detected.\n\n{display_text}")
     else:
-        st.error(f"⚠️ Scam Detected:\n\n{st.session_state.result.get('ai_result', '')}")
+        st.info(f"⚠️ Be cautious:\n\n{display_text}")
+
 
 # Clear input
 if st.button("🧹 Clear"):
